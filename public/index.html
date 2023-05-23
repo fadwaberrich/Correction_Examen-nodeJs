@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    event Id: <input type="text" id="abonneId" placeholder="write your eventId..." />
+    <button onclick="remove()">Remove abonne</button>
+    <div id="content"></div>
+    <script src="socket.io.min.js"></script>
+    <script>
+        const socket = io("http://localhost:3200");
+        socket.on("abonneRemoved", (nom) => {
+            document.getElementById("content").innerHTML += `abonne ${nom} removed! <br/>`;
+            console.log(nom)
+        });
+        const remove = () => {
+            let abonneId = document.getElementById("abonneId").value;
+            socket.emit("removeAbonne", abonneId);
+        }
+  
+        socket.on("userConnected",(param)=>
+        {
+            console.log(param)
+        })
+    </script>
+</body>
+
+</html>

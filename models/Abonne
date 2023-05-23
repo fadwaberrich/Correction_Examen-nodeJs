@@ -1,0 +1,24 @@
+const mongoose = require("mongoose");
+const schema = mongoose.Schema(
+  {
+    Nom: {
+      type: String,
+    },
+    Prenom: {
+        type: String,
+    },
+    Age: {
+        type: Number,
+      },
+    
+    Telephone: {
+          type: Number,
+        },
+    Poids: {
+            type: Number,
+        },
+    
+},
+{ timestamps: true }
+);
+exports.Abonne = mongoose.model("Abonne", schema);
